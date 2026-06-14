@@ -40,7 +40,7 @@ source venv/bin/activate
 
 ```bash
 # 仮想環境が有効な状態で実行してください
-python -m pip install tqdm
+pip install -r requirements.txt
 ```
 
 ## 使い方

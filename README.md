@@ -40,7 +40,21 @@ source venv/bin/activate
 
 ```bash
 # 仮想環境が有効な状態で実行してください
-pip install -r requirements.txt
+pip install --require-hashes -r requirements.txt
+```
+
+`requirements.txt` は推移的依存まで含めてバージョンとハッシュを完全固定したロックファイルです（`--require-hashes` により改ざんされたパッケージや想定外のバージョンはインストールが拒否されます）。直接手で編集しないでください。
+
+### 依存パッケージを追加・更新する場合
+
+直接依存は `requirements.in` に記載し、[uv](https://docs.astral.sh/uv/) で `requirements.txt` を再生成します。
+
+```bash
+# requirements.in を編集した後、ロックファイルを再生成
+uv pip compile requirements.in --python-version 3.13 --universal --generate-hashes -o requirements.txt
+
+# 既存の固定を外して最新（脆弱性修正版）へ更新する場合は --upgrade を付ける
+uv pip compile requirements.in --python-version 3.13 --universal --generate-hashes --upgrade -o requirements.txt
 ```
 
 ## 使い方

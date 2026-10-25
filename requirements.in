@@ -1,0 +1,4 @@
+# 直接依存（ここを編集し、requirements.txt は下記コマンドで再生成する）
+#   uv pip compile requirements.in --python-version 3.13 --universal --generate-hashes -o requirements.txt
+# tqdm 4.66.3 未満は CVE-2024-34062 の影響を受けるため下限を指定
+tqdm>=4.66.3
